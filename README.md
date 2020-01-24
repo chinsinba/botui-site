@@ -1,2 +1,2 @@
 # botui-site
-Main site for BotUI
+Main site for Plotana.com
