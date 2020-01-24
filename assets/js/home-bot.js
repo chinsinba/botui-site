@@ -107,7 +107,7 @@ var tutorial = function () {
     return homeBot.message.bot({
       delay: 500,
       loading: true,
-      content: 'There are 500 new homes built in past 2 years within 2 KM radius of your plot.'
+      content: 'I can see that in past 2 years 500 new homes have been built within 2 KM radius of your plot. Thats a good growth compared to Jaynagar area.'
     });
   }).then(function () {
     return homeBot.action.button({
@@ -121,7 +121,7 @@ var tutorial = function () {
     return homeBot.message.bot({
       delay: 5000,
       loading: true,
-      content: 'The area is densely populated and expected to grow. Further, huge night light intensity detected, seems like people are nocturnal here.'
+      content: 'The area is densely populated and expected to grow. Further, I can see huge night light intensity, seems like people here are nocturnal. Also, there is very less tree cover. Its a concrete jungle!!'
     });
   }).then(function () {
     return homeBot.action.button({
@@ -134,7 +134,7 @@ var tutorial = function () {
   }).then(function (res) {
     return homeBot.message.bot({
       delay: 1000,
-      content: 'Thats it for now. I am working on comparative analytics, Slope and Flood analysis and much more. Bookmark me sweetheart!.'
+      content: 'Thats it for now. I am working on comparative analytics, Slope and Flood analysis to suggest you a better plot and much more. Bookmark me sweetheart!.'
     });
   }).then(function (res) {
     return homeBot.message.bot({
