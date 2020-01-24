@@ -107,7 +107,7 @@ var tutorial = function () {
     return homeBot.message.bot({
       delay: 500,
       loading: true,
-      content: 'There are 500 new homes built in past 2 years within 2 KM radius around your plot.'
+      content: 'There are 500 new homes built in past 2 years within 2 KM radius of your plot.'
     });
   }).then(function () {
     return homeBot.action.button({
