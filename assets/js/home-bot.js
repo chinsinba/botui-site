@@ -2,20 +2,21 @@
 var homeBot = BotUI('home-demo');
 
 homeBot.message.add({
-  content: 'Welcome to Plotana. I am here to provide you analytics of your dream plot.'
+  content: 'Welcome to PLOTANA. I can analyse the plot you looking to buy/sell.'
 }).then(function () {
   return homeBot.message.add({
-    delay: 1500,
-    content: 'Wanna see a demo of what Plotana can do?'
+    delay: 4000,
+    loading: true,
+    content: 'Wanna see a demo of what I can do?'
   });
 }).then(function () {
   return homeBot.action.button({
     delay: 1000,
     action: [{
-      text: 'Sure!',
+      text: 'Yes',
       value: 'sure'
     }, {
-      text: 'No',
+      text: 'No, I dont believe you.',
       value: 'skip'
     }]
   });
@@ -32,10 +33,11 @@ homeBot.message.add({
 var tutorial = function () {
   homeBot.message.add({
     delay: 1000,
-    content: "Are you planning to buy or sell?"
+    loading: true,
+    content: "Alright, are you looking to buy or sell?"
   }).then(function () {
     return homeBot.action.button({
-      delay: 1000,
+      delay: 200,
       action: [{
         text: 'Buy',
         value: 'buy'
@@ -47,27 +49,44 @@ var tutorial = function () {
         value: 'nothing'
       }]
     });
-  }).then(function () {
+  }).then(function (res) {
+    if(res.value == 'nothing') {
+      return homeBot.message.add({
+        delay: 1500,
+        loading: true,
+        content: 'You are not poor, you are lazy. Now tell me which location you would buy? '
+      });
+    }
     return homeBot.message.add({
-      delay: 1500,
+      delay: 1000,
+      loading: true,
       content: 'Where is your plot?'
     });
+
   }).then(function () {
     return homeBot.action.text({
-      delay: 800,
+      delay: 1000,
       action: {
         value: 'BTM Layout',
-        placeholder: 'Your name'
+        placeholder: 'location'
       }
     });
   }).then(function (res) {
+    if(res.value == 'BTM Layout') {
     return homeBot.message.bot({
-      delay: 500,
+      delay: 1500,
+      loading: true,
       content: res.value + '. Aha, you are a rich fellow. Now please wait while I am pulling satellite images for analysis'
     });
+  }
+  return homeBot.message.bot({
+    delay: 1500,
+    loading: true,
+    content: 'Smart Ass!! you changed the location huh!. You will only get analysis of BTM Layout for free!!. I am analysing BTM Layout'
+  });
   }).then(function (res) {
     return homeBot.message.add({
-      delay: 1200,
+      delay: 4000,
       type: 'embed',
       content: 'https://giphy.com/embed/HzMfJIkTZgx8s'
     
@@ -75,36 +94,62 @@ var tutorial = function () {
   }).then(function (res) {
     return homeBot.message.bot({
       delay: 4000,
+      loading: true,
       content: 'Almost there.'
     });
   }).then(function (res) {
     return homeBot.message.bot({
       delay: 4000,
+      loading: true,
       content: 'Here you go!'
     });
   }).then(function (res) {
     return homeBot.message.bot({
-      delay: 4000,
-      content: 'There are 5000 new homes built in past 2 years around your plot with in the Radius of 2 Kilometers.'
+      delay: 500,
+      loading: true,
+      content: 'There are 500 new homes built in past 2 years within 2 KM radius around your plot.'
+    });
+  }).then(function () {
+    return homeBot.action.button({
+      delay: 1000, 
+      action: [{
+        text: 'Tell me more!',
+        value: 'more'
+      }]
     });
   }).then(function (res) {
     return homeBot.message.bot({
-      delay: 2500,
-      content: 'The area is densely populated and expected to grow. Further, huge night light intensity detected, seems like people here are nocturnal.'
+      delay: 5000,
+      loading: true,
+      content: 'The area is densely populated and expected to grow. Further, huge night light intensity detected, seems like people are nocturnal here.'
+    });
+  }).then(function () {
+    return homeBot.action.button({
+      delay: 1000,
+      action: [{
+        text: 'Some more',
+        value: 'smore'
+      }]
     });
   }).then(function (res) {
     return homeBot.message.bot({
       delay: 1000,
-      content: 'Spread the word. Its coming soon.'
+      content: 'Thats it for now. I am working on comparative analytics, Slope and Flood analysis and much more. Bookmark me sweetheart!.'
     });
-  }).then(end);
+  }).then(function (res) {
+    return homeBot.message.bot({
+      delay: 1000,
+      content: 'Bye! 😒'
+    });
+  })
 };
 
 var end = function () {
   ga_record('message', 'end');
   homeBot.message.add({
     delay: 1000,
-    content: 'I dont care. I am awesome and you need to see it.'
+    loading: true,
+    content: 'Dumbass, I dont care. I am awesome and you need to see it.'
   });
   tutorial();
 };
