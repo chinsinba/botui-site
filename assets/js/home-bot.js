@@ -2,10 +2,10 @@
 var homeBot = BotUI('home-demo');
 
 homeBot.message.add({
-  content: 'Hi, I am Plotana.\n I analyze plots and help you invest your hard-earned money at a good location.'
+  content: 'Hi, I am Plotana 👩🏻‍🎤. I analyze plots and help you invest your hard-earned money at a good location.'
 }).then(function () {
   return homeBot.message.add({
-    delay: 2000,
+    delay: 1000,
     loading: true,
     content: 'Do you want to see what I can do?'
   });
@@ -13,10 +13,10 @@ homeBot.message.add({
   return homeBot.action.button({
     delay: 1000,
     action: [{
-      text: 'Yes',
+      text: 'Yes, Show me the money',
       value: 'sure'
     }, {
-      text: 'No, I only believe myself.',
+      text: 'No, I only believe myself',
       value: 'skip'
     }]
   });
@@ -32,17 +32,17 @@ homeBot.message.add({
 
 var tutorial = function () {
   homeBot.message.add({
-    delay: 1000,
+    delay: 2000,
     loading: true,
     content: "Alright, are you looking to buy or sell?"
   }).then(function () {
     return homeBot.action.button({
       delay: 200,
       action: [{
-        text: 'Buy',
+        text: 'Buy, I have money',
         value: 'buy'
       }, {
-        text: 'Sell',
+        text: 'Sell, I want money',
         value: 'sell'
       }, {
         text: 'I am poor',
@@ -86,7 +86,7 @@ var tutorial = function () {
   });
   }).then(function (res) {
     return homeBot.message.add({
-      delay: 2000,
+      delay: 1000,
       loading: true,
       type: 'embed',
       content: 'https://giphy.com/embed/HzMfJIkTZgx8s'
@@ -112,7 +112,7 @@ var tutorial = function () {
     });
   }).then(function () {
     return homeBot.action.button({
-      delay: 1000, 
+      delay: 200, 
       action: [{
         text: 'Tell me more!',
         value: 'tmore'
@@ -122,7 +122,7 @@ var tutorial = function () {
     return homeBot.message.bot({
       delay: 2000,
       loading: true,
-      content: 'The population within 2 kms has gone up from 120 people/sqKm in 2015 to 180people/sqKm. The location is growing very fast'
+      content: 'The population within 2 kms has gone up from 3900 persons/sqKm in 2015 to 4381 persons/sqKm in 2019. This place is over crowded, whats the matter?'
     });
   }).then(function () {
     return homeBot.action.button({
@@ -136,7 +136,7 @@ var tutorial = function () {
     return homeBot.message.bot({
       delay: 2000,
       loading: true,
-      content: 'The night lights intensity in last 2 years is growing fast. This means there is high economic activity happening in the location.'
+      content: 'The night lights intensity in last 2 years is growing fast. This means there is high economic activity happening in the location. People are becoming noctornal here.'
     });
   }).then(function () {
     return homeBot.action.button({
@@ -150,7 +150,7 @@ var tutorial = function () {
     return homeBot.message.bot({
       delay: 2000,
       loading: true,
-      content: 'I can show other comparable locations for you to invest. But for that I want to know your budget?'
+      content: 'I can show other comparable locations for you to invest. But for that I have to know your budget? 💵'
     });
   }).then(function () {
     return homeBot.action.button({
@@ -171,45 +171,37 @@ var tutorial = function () {
     });
   }).then(function (res) {
 
-   if (res.value=== '10l')
+   if (res.value=== 'rich')
     {
     return homeBot.message.bot({
       delay: 1000,
-      content: 'Your budget is too low for any good plot in Bangalore. You need to go and look for in the suburbs.'
+      content: 'That was a trick to know how rich you are 🤪. I am still in early Beta stage. My creator is working on this feature to make you further rich. I can notify you when its made available to me'
     });
-    }
-   if (res.value=== '1020')
-   {
-    return homeBot.message.bot({
-    delay: 1000,
-    content: 'coming soon!'
-   });
    }
-   if (res.value=== '2050')
-   {
-    return homeBot.message.bot({
+   return homeBot.message.bot({
     delay: 1000,
-    content: 'coming soon!'
-   });
-   }
-   if (res.value=== 'rich')
-   {
-    return homeBot.message.bot({
-    delay: 1000,
-    content: 'coming soon!'
-   });
-   }
-   }).then(function (res) {
+    content: 'I am still in early Beta stage. My creator is working on this feature.  I can notify you when its made available to me. Do not worry I wont share it with anyone.'
+  });
+   }).then(function () {
+    return homeBot.action.text({
+      delay: 1000,
+      action: {
+        value: 'Your Email',
+        placeholder: 'email'
+      }
+    });
+  }).then(function (res) {
+    ga_record('email', res.value);
     return homeBot.message.bot({
       delay: 1000,
-      content: 'Meanwhile, you can help me spread the word by introducing me to your family and friedns.'
+      content: 'Thanks, I hope you did not give me wrong mail id. Meanwhile, you can help me spread the word by introducing me to your family and friedns.'
     });
   }).then(function () {
     ga_record('message', 'share');
     return homeBot.message.bot({
       delay: 1000,
       type:'html',
-      content:'<a href="whatsapp://send?text=Hi, I am Plotana, I analyze plots. I am available at http://plotana.com " data-action="share/whatsapp/share"><img src="https://img.icons8.com/color/48/000000/whatsapp.png"></img></a>'
+      content:'Touch me! <a href="whatsapp://send?text=Hi, I am Plotana, I analyze plots. I am available at http://plotana.com " data-action="share/whatsapp/share"><img src="https://img.icons8.com/color/48/000000/whatsapp.png"></img></a>'
     });
   })
 };
@@ -219,7 +211,7 @@ var end = function () {
   homeBot.message.add({
     delay: 1000,
     loading: true,
-    content: 'I dont care. I am awesome and you need to see it.'
+    content: 'OK smarty pants.But I am awesome and you need to see it.'
   });
   tutorial();
 };
