@@ -82,7 +82,7 @@ var tutorial = function () {
   return homeBot.message.bot({
     delay: 1500,
     loading: true,
-    content: 'Smart!! you changed the location huh!. For now, you will only get analysis of BTM Layout. Now please wait while I am pulling satellite images for analysis'
+    content: 'Smart!! you changed the location huh!. For now, you will only get an analysis of BTM Layout. Now please wait while I am pulling satellite images for analysis'
   });
   }).then(function (res) {
     return homeBot.message.add({
@@ -108,7 +108,7 @@ var tutorial = function () {
     return homeBot.message.bot({
       delay: 500,
       loading: true,
-      content: 'I can see in past 2 years (from 2018 to 2019) 500 new homes have been constructed within 2 KM radius of your plot.'
+      content: 'I can see in the past 2 years (from 2018 to 2019) 500 new homes have been constructed within 2 KM radius of your plot.'
     });
   }).then(function () {
     return homeBot.action.button({
@@ -122,7 +122,7 @@ var tutorial = function () {
     return homeBot.message.bot({
       delay: 2000,
       loading: true,
-      content: 'The population within 2 kms has gone up from 3900 persons/sqKm in 2015 to 4381 persons/sqKm in 2019. This place is over crowded, whats the matter?'
+      content: "The population within 2 KM has gone up from 3900 persons/sqKm in 2015 to 4381 persons/sqKm in 2019. This place is overcrowded, what's the matter?"
     });
   }).then(function () {
     return homeBot.action.button({
@@ -136,7 +136,7 @@ var tutorial = function () {
     return homeBot.message.bot({
       delay: 2000,
       loading: true,
-      content: 'The night lights intensity in last 2 years is growing fast. This means there is high economic activity happening in the location. People are becoming noctornal here.'
+      content: 'The night lights intensity in the last 2 years is growing fast. This means there is high economic activity happening in the location. People are becoming nocturnal here.'
     });
   }).then(function () {
     return homeBot.action.button({
@@ -150,7 +150,7 @@ var tutorial = function () {
     return homeBot.message.bot({
       delay: 2000,
       loading: true,
-      content: 'I can show other comparable locations for you to invest. But for that I have to know your budget? 💵'
+      content: 'I can show other comparable locations for you to invest in. But for that, I have to know your budget? 💵'
     });
   }).then(function () {
     return homeBot.action.button({
@@ -175,12 +175,12 @@ var tutorial = function () {
     {
     return homeBot.message.bot({
       delay: 1000,
-      content: 'That was a trick to know how rich you are 🤪. I am still in early Beta stage. My creator is working on this feature to make you further rich. I can notify you when its made available to me'
+      content: 'That was a trick to know how rich you are 🤪. I am still in early Beta stage. My creator is working on this feature to make you further rich. I can notify you when its made available to me.'
     });
    }
    return homeBot.message.bot({
     delay: 1000,
-    content: 'I am still in early Beta stage. My creator is working on this feature.  I can notify you when its made available to me. Do not worry I wont share it with anyone.'
+    content: "I am still in early Beta stage. My creator is working on this feature. I can notify you when its made available to me. Don't worry I won't share it with anyone."
   });
    }).then(function () {
     return homeBot.action.text({
@@ -194,14 +194,14 @@ var tutorial = function () {
     ga_record('email', res.value);
     return homeBot.message.bot({
       delay: 1000,
-      content: 'Thanks, I hope you did not give me wrong mail id. Meanwhile, you can help me spread the word by introducing me to your family and friedns.'
+      content: 'Thanks, I hope you did not give me the wrong mail id. Meanwhile, you can help me spread the word by introducing me to your family and friends.'
     });
   }).then(function () {
     ga_record('message', 'share');
     return homeBot.message.bot({
       delay: 1000,
       type:'html',
-      content:'Touch me! <a href="whatsapp://send?text=Hi, I am Plotana, I analyze plots. I am available at http://plotana.com " data-action="share/whatsapp/share"><img src="https://img.icons8.com/color/48/000000/whatsapp.png"></img></a>'
+      content:'Touch me! <a href="whatsapp://send?text=Hi, I am Plotana, I am good at analysing plots. I am available at http://plotana.com " data-action="share/whatsapp/share"><img src="https://img.icons8.com/color/48/000000/whatsapp.png"></img></a> <a href="https://twitter.com/plotana_lab?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false"><img src="https://img.icons8.com/color/48/000000/twitter.png"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'
     });
   })
 };
