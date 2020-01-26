@@ -186,8 +186,8 @@ var tutorial = function () {
     return homeBot.action.text({
       delay: 1000,
       action: {
-        value: 'Your Email',
-        placeholder: 'email'
+        sub_type: 'email',
+        placeholder: 'Enter your mail id here'
       }
     });
   }).then(function (res) {
