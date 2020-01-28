@@ -1,8 +1,15 @@
 
 var homeBot = BotUI('home-demo');
 
+var geocoder = new google.maps.Geocoder();
+ 
+var my_loc;
+var my_decision;
+ 
+
+
 homeBot.message.add({
-  content: 'Hi, I am Plotana 👩🏻‍🎤. I analyze plots and help you invest your hard-earned money at a good location.'
+  content: 'Hi, I am Plotana. I analyze property and help you invest your hard-earned money at a good location.'
 }).then(function () {
   return homeBot.message.add({
     delay: 1000,
@@ -10,39 +17,54 @@ homeBot.message.add({
     content: 'Do you want to see what I can do?'
   });
 }).then(function () {
+  ga_record('message', "welcome");
   return homeBot.action.button({
     delay: 1000,
     action: [{
-      text: 'Yes, Show me the money',
+      text: 'Yes',
       value: 'sure'
     }, {
-      text: 'No, I only believe myself',
+      text: 'No',
       value: 'skip'
     }]
   });
 }).then(function (res) {
-  ga_record('btn_click', res.value);
-  if(res.value == 'sure') {
+  my_decision = res.value
+  if (navigator.geolocation) {
+   var pos = navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+  console.log( "Geolocation is not supported by this browser.")
+  }
+  if(my_decision== 'sure') {
+  return homeBot.message.add({
+    delay: 500,
+    loading: true,
+    content: 'Please provide me access to Location.'
+  });
+}
+}).then(function () {
+  ga_record('btn_click', my_decision);
+  if(my_decision== 'sure') {
     tutorial();
   }
-  if(res.value == 'skip') {
+  if(my_decision== 'skip') {
     end();
   }
 });
 
 var tutorial = function () {
   homeBot.message.add({
-    delay: 2000,
+    delay: 4000,
     loading: true,
     content: "Alright, are you looking to buy or sell?"
   }).then(function () {
     return homeBot.action.button({
       delay: 200,
       action: [{
-        text: 'Buy, I have money',
+        text: 'Buy',
         value: 'buy'
       }, {
-        text: 'Sell, I want money',
+        text: 'Sell',
         value: 'sell'
       }, {
         text: 'I am poor',
@@ -50,6 +72,7 @@ var tutorial = function () {
       }]
     });
   }).then(function (res) {
+    ga_record('btn_click', res.value);
     if(res.value == 'nothing') {
       return homeBot.message.add({
         delay: 500,
@@ -63,30 +86,25 @@ var tutorial = function () {
       content: 'Where is the plot?'
     });
 
-  }).then(function () {
-    return homeBot.action.text({
-      delay: 1000,
-      action: {
-        value: 'BTM Layout',
-        placeholder: 'location'
-      }
-    });
   }).then(function (res) {
-    if(res.value == 'BTM Layout') {
+    ga_record('location', my_loc);
+      return homeBot.action.text({
+        delay: 1000,
+        action: {
+          value: my_loc,
+          placeholder: 'Enter your location'
+        }
+      });
+  }).then(function (res) {
+    my_loc =res.value
     return homeBot.message.bot({
       delay: 1500,
       loading: true,
-      content: res.value + '. Aha, you are a rich fellow. Now please wait while I am pulling satellite images for analysis.'
+      content: ' Please wait while I am pulling satellite images for analysis'
     });
-  }
-  return homeBot.message.bot({
-    delay: 1500,
-    loading: true,
-    content: 'Smart!! you changed the location huh!. For now, you will only get an analysis of BTM Layout. Now please wait while I am pulling satellite images for analysis'
-  });
   }).then(function (res) {
     return homeBot.message.add({
-      delay: 1000,
+      delay: 1500,
       loading: true,
       type: 'embed',
       content: 'https://giphy.com/embed/HzMfJIkTZgx8s'
@@ -119,10 +137,11 @@ var tutorial = function () {
       }]
     });
   }).then(function (res) {
+    ga_record('btn_click', res.value);
     return homeBot.message.bot({
       delay: 2000,
       loading: true,
-      content: "The population within 2 KM has gone up from 3900 persons/sqKm in 2015 to 4381 persons/sqKm in 2019. This place is overcrowded, what's the matter?"
+      content: "The population within 2 KM has gone up from 3900 persons/sqKm in 2015 to 4381 persons/sqKm in 2019. This place is overcrowded."
     });
   }).then(function () {
     return homeBot.action.button({
@@ -132,25 +151,40 @@ var tutorial = function () {
         value: 'more'
       }]
     });
-  }).then(function () {
+  }).then(function (res) {
+    ga_record('btn_click', res.value);
     return homeBot.message.bot({
       delay: 2000,
       loading: true,
-      content: 'The night lights intensity in the last 2 years is growing fast. This means there is high economic activity happening in the location. People are becoming nocturnal here.'
+      content: 'The night lights intensity in the last 2 years is growing fast. '
+    });
+  }).then(function (res) {
+    ga_record('btn_click', res.value);
+    return homeBot.message.bot({
+      delay: 2000,
+      loading: true,
+      content: 'This means there is high economic activity happening in the location. People are becoming nocturnal here.'
     });
   }).then(function () {
     return homeBot.action.button({
       delay: 1000,
       action: [{
         text: 'Some more',
-        value: 'smore'
+        value: 'somemore'
       }]
     });
-  }).then(function () {
+  }).then(function (res) {
+    ga_record('btn_click', res.value);
     return homeBot.message.bot({
-      delay: 2000,
+      delay: 1000,
       loading: true,
-      content: 'I can show other comparable locations for you to invest in. But for that, I have to know your budget? 💵'
+      content: 'I can show other comparable locations for you to invest in.'
+    });
+  }).then(function (res) {
+    return homeBot.message.bot({
+      delay: 1000,
+      loading: true,
+      content: 'But for that, I have to know your budget?'
     });
   }).then(function () {
     return homeBot.action.button({
@@ -170,44 +204,52 @@ var tutorial = function () {
     }]
     });
   }).then(function (res) {
+    ga_record('budget_btn_click', res.value);
 
    if (res.value=== 'rich')
     {
     return homeBot.message.bot({
       delay: 1000,
-      content: 'That was a trick to know how rich you are 🤪. I am still in early Beta stage. My creator is working on this feature to make you further rich. I can notify you when its made available to me.'
+      content: 'You are rich. I am still in early Beta stage. My creator is working on this feature to make you further rich.'
     });
    }
    return homeBot.message.bot({
     delay: 1000,
-    content: "I am still in early Beta stage. My creator is working on this feature. I can notify you when its made available to me. Don't worry I won't share it with anyone."
+    content: "I am still in early Beta stage. My creator is working on this feature to make you further rich. "
   });
-   }).then(function () {
+   }).then(function (res) {
+    return homeBot.message.bot({
+      delay: 1000,
+      loading: true,
+      content: "I will notify you when its made available to me."
+    });
+  }).then(function () {
+    ga_record('text_box', "email");
     return homeBot.action.text({
       delay: 1000,
       action: {
-        sub_type: 'email',
-        placeholder: 'Enter your mail id here'
+        // sub_type: 'email',
+        placeholder: 'Enter your mail id'
       }
     });
   }).then(function (res) {
     ga_record('email', res.value);
     return homeBot.message.bot({
       delay: 1000,
-      content: 'Thanks, I hope you did not give me the wrong mail id. Meanwhile, you can help me spread the word by introducing me to your family and friends.'
+      content: 'Thanks. Meanwhile, introduce me to your family and friends.'
     });
   }).then(function () {
     ga_record('message', 'share');
     return homeBot.message.bot({
       delay: 1000,
       type:'html',
-      content:'Touch me! <a href="whatsapp://send?text=Hi, I am Plotana, I am good at analysing plots. I am available at http://plotana.com " data-action="share/whatsapp/share"><img src="https://img.icons8.com/color/48/000000/whatsapp.png"></img></a> <a href="https://twitter.com/plotana_lab?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false"><img src="https://img.icons8.com/color/48/000000/twitter.png"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'
+      content:'Touch me! <a href="whatsapp://send?text=Hi, I am Plotana, virtual property advisor. Available at your service on http://plotana.com " data-action="share/whatsapp/share"><img src="https://img.icons8.com/color/48/000000/whatsapp.png"></img></a> <a href="https://twitter.com/plotana_lab?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false"><img src="https://img.icons8.com/color/48/000000/twitter.png"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'
     });
   })
 };
 
 var end = function () {
-  ga_record('message', 'end');
+
   homeBot.message.add({
     delay: 1000,
     loading: true,
@@ -224,4 +266,32 @@ var ga_record = function(type, action) {
       eventAction: action
     });
   }
+}
+
+var fetch_location = function(){ 
+  
+  
+}
+
+function showPosition(position){
+   codeLatLng(position.coords.latitude,position.coords.longitude)
+}
+
+
+function codeLatLng(lat, lng) {
+    var latlng = new google.maps.LatLng(lat, lng);
+    geocoder.geocode({'latLng': latlng}, function(results, status) {
+      if(status == google.maps.GeocoderStatus.OK) {
+          console.log(results)
+          if(results[1]) {
+              //formatted address
+              var address = results[0].formatted_address;
+              my_loc=  address
+          } else {
+              alert("No results found");
+          }
+      } else {
+          alert("Geocoder failed due to: " + status);
+      }
+    });
 }
