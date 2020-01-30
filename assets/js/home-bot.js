@@ -9,13 +9,14 @@ var my_decision;
 
 
 homeBot.message.add({
-  delay:1000,
+  delay:2000,
+  loading : true,
   photo: 'assets/images/myAvatar.png',
   content: 'Hi, I am Plotana. I analyze property and help you invest your hard-earned money at a good location.'
 }).then(function () {
   return homeBot.message.add({
-    photo: true,
-    delay: 1000,
+    photo: 'assets/images/myAvatar.png',
+    delay: 2000,
     loading: true,
     content: 'Do you want to see what I can do?'
   });
