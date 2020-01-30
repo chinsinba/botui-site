@@ -95,7 +95,7 @@ var tutorial = function () {
           delay: 500,
           loading: true,
           type:'html',
-          content: '<img src="https://img.icons8.com/doodle/64/000000/marker--v1.png"><br> <h3>'+ my_loc +'</h3>'
+          content: '<img src="assets/images/marker.png"><br> <h3>'+ my_loc +'</h3>'
         });
       }
       return homeBot.message.bot({
@@ -145,7 +145,7 @@ var tutorial = function () {
       delay: 500,
       loading: true,
       type: 'html',
-      content: '<h3><img src="https://img.icons8.com/clouds/64/000000/home-page.png"> <br>I can see in the past 2 years (from 2018 to 2019) 500 new homes have been constructed within 2 KM radius of your plot.</h3>'
+      content: '<h3><img src="assets/images/home-page.png"> <br>I can see in the past 2 years (from 2018 to 2019) 500 new homes have been constructed within 2 KM radius of your plot.</h3>'
     });
   }).then(function () {
     return homeBot.action.button({
@@ -160,7 +160,7 @@ var tutorial = function () {
       delay: 500,
       loading: true,
       type: 'html',
-      content: '<h3><img src="https://img.icons8.com/clouds/64/000000/deciduous-tree.png"><br> There are approximately 500 trees within 2 KM radius of your plot.</h3>'
+      content: '<h3><img src="assets/images/deciduous-tree.png"><br> There are approximately 500 trees within 2 KM radius of your plot.</h3>'
     });
   }).then(function () {
     return homeBot.action.button({
@@ -176,7 +176,7 @@ var tutorial = function () {
       delay: 2000,
       loading: true,
       type: 'html',
-      content: "<h3> <img src='https://img.icons8.com/clouds/64/000000/conference-call.png'> <br>The population within 2 KM has gone up from 3900 persons/sqKm in 2015 to 4381 persons/sqKm in 2019. This place is overcrowded.</h3>"
+      content: "<h3> <img src='assets/images/people.png'> <br>The population within 2 KM has gone up from 3900 persons/sqKm in 2015 to 4381 persons/sqKm in 2019. This place is overcrowded.</h3>"
     });
   }).then(function () {
     return homeBot.action.button({
@@ -192,7 +192,7 @@ var tutorial = function () {
       delay: 2000,
       loading: true,
       type: 'html',
-      content: '<h3><img src="https://img.icons8.com/clouds/64/000000/light-on.png"> <br>The night lights intensity in the last 2 years is growing fast.</h3>'
+      content: '<h3><img src="assets/images/light-on.png"> <br>The night lights intensity in the last 2 years is growing fast.</h3>'
     });
   }).then(function (res) {
     ga_record('btn_click', res.value);
