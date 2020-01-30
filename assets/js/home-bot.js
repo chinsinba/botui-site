@@ -88,11 +88,20 @@ var tutorial = function () {
 
   }).then(function (res) {
     ga_record('location', my_loc);
+    console.log(my_loc)
+
+      if (my_loc){
+        return homeBot.message.add({
+          delay: 500,
+          loading: true,
+          content: 'Your property is at '+ my_loc
+        });
+      }
       return homeBot.action.text({
         delay: 1000,
         action: {
           value: my_loc,
-          placeholder: 'Enter your location'
+          placeholder: 'Enter your property location'
         }
       });
   }).then(function (res) {
