@@ -94,7 +94,8 @@ var tutorial = function () {
         return homeBot.message.add({
           delay: 500,
           loading: true,
-          content: 'Your property is at '+ my_loc
+          type:'html',
+          content: '<img src="https://img.icons8.com/doodle/48/000000/marker--v1.png"> <b>'+ my_loc +'</b>'
         });
       }
       return homeBot.action.text({
