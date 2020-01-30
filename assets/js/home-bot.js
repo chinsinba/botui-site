@@ -9,9 +9,12 @@ var my_decision;
 
 
 homeBot.message.add({
+  delay:1000,
+  photo: 'assets/images/myAvatar.png',
   content: 'Hi, I am Plotana. I analyze property and help you invest your hard-earned money at a good location.'
 }).then(function () {
   return homeBot.message.add({
+    photo: true,
     delay: 1000,
     loading: true,
     content: 'Do you want to see what I can do?'
@@ -37,6 +40,7 @@ homeBot.message.add({
   }
   if(my_decision== 'sure') {
   return homeBot.message.add({
+    photo: 'assets/images/myAvatar.png',
     delay: 500,
     loading: true,
     content: 'Please provide me access to Location.'
@@ -56,6 +60,7 @@ var tutorial = function () {
   homeBot.message.add({
     delay: 4000,
     loading: true,
+    photo: 'assets/images/myAvatar.png',
     content: "Alright, are you looking to buy or sell?"
   }).then(function () {
     return homeBot.action.button({
@@ -75,12 +80,14 @@ var tutorial = function () {
     ga_record('btn_click', res.value);
     if(res.value == 'nothing') {
       return homeBot.message.add({
+        photo: 'assets/images/myAvatar.png',
         delay: 500,
         loading: true,
         content: 'You are not poor, you are lazy. Now tell me which location you would buy? '
       });
     }
     return homeBot.message.add({
+      photo: 'assets/images/myAvatar.png',
       delay: 500,
       loading: true,
       content: 'Where is the plot?'
@@ -92,6 +99,7 @@ var tutorial = function () {
 
       if (my_loc){
         return homeBot.message.add({
+          photo: 'assets/images/myAvatar.png',
           delay: 500,
           loading: true,
           type:'html',
@@ -99,29 +107,32 @@ var tutorial = function () {
         });
       }
       return homeBot.message.bot({
+        photo: 'assets/images/myAvatar.png',
         delay: 500,
         loading: true,
         type: 'html',
-        content: "You did not provided acess to your location. Do you want to see for a sample location?"
+        content: "You did not provided access to your location. Do you want to procceed with a demo location?"
       });
       
   }).then(function () {
     return homeBot.action.button({
       delay: 1500,
       action: [{
-        text: 'Yes',
+        text: 'Continue',
         value: 'yesSampleLocation'
       }]
     });
   }).then(function (res) {
     my_loc =res.value
     return homeBot.message.bot({
+      photo: 'assets/images/myAvatar.png',
       delay: 1500,
       loading: true,
       content: ' Please wait while I am pulling satellite images for analysis'
     });
   }).then(function (res) {
     return homeBot.message.add({
+      photo: 'assets/images/myAvatar.png',
       delay: 1500,
       loading: true,
       type: 'embed',
@@ -130,18 +141,21 @@ var tutorial = function () {
     });
   }).then(function (res) {
     return homeBot.message.bot({
+      photo: 'assets/images/myAvatar.png',
       delay: 2000,
       loading: true,
       content: 'Almost there.'
     });
   }).then(function (res) {
     return homeBot.message.bot({
+      photo: 'assets/images/myAvatar.png',
       delay: 2000,
       loading: true,
       content: 'Here you go!'
     });
   }).then(function (res) {
     return homeBot.message.bot({
+      photo: 'assets/images/myAvatar.png',
       delay: 500,
       loading: true,
       type: 'html',
@@ -157,6 +171,7 @@ var tutorial = function () {
     });
   }).then(function (res) {
     return homeBot.message.bot({
+      photo: 'assets/images/myAvatar.png',
       delay: 500,
       loading: true,
       type: 'html',
@@ -173,6 +188,7 @@ var tutorial = function () {
   }).then(function (res) {
     ga_record('btn_click', res.value);
     return homeBot.message.bot({
+      photo: 'assets/images/myAvatar.png',
       delay: 2000,
       loading: true,
       type: 'html',
@@ -189,6 +205,7 @@ var tutorial = function () {
   }).then(function (res) {
     ga_record('btn_click', res.value);
     return homeBot.message.bot({
+      photo: 'assets/images/myAvatar.png',
       delay: 2000,
       loading: true,
       type: 'html',
@@ -197,6 +214,7 @@ var tutorial = function () {
   }).then(function (res) {
     ga_record('btn_click', res.value);
     return homeBot.message.bot({
+      photo: 'assets/images/myAvatar.png',
       delay: 2000,
       loading: true,
       type: 'html',
@@ -213,12 +231,14 @@ var tutorial = function () {
   }).then(function (res) {
     ga_record('btn_click', res.value);
     return homeBot.message.bot({
+      photo: 'assets/images/myAvatar.png',
       delay: 1000,
       loading: true,
       content: 'My creator is working on identifying better locations for you to invest in.'
     });
   }).then(function (res) {
     return homeBot.message.bot({
+      photo: 'assets/images/myAvatar.png',
       delay: 1000,
       loading: true,
       content: " Would you like to be notified?"
@@ -249,15 +269,39 @@ var tutorial = function () {
   }).then(function () {
    
     return homeBot.message.bot({
+      photo: 'assets/images/myAvatar.png',
       delay: 1000,
-      content: 'Thanks. Meanwhile, follow and introduce me to your family and friends.'
+      content: 'You can follow and introduce me to your family and friends.'
     });
   }).then(function () {
     ga_record('message', 'share');
     return homeBot.message.bot({
-      delay: 1000,
+      photo: 'assets/images/myAvatar.png',
+      delay: 200,
       type:'html',
-      content:'<b>Touch Me!</b> <a href="whatsapp://send?text=Hi, I am Plotana, virtual property advisor. Available at your service on http://plotana.com " data-action="share/whatsapp/share"><img src="https://img.icons8.com/color/48/000000/whatsapp.png"></img></a> <a href="https://twitter.com/plotana_lab?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false"><img src="https://img.icons8.com/color/48/000000/twitter.png"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'
+      content:'<a href="whatsapp://send?text=Hey, check out Plotana, a cool service for Property analysis. http://plotana.com " data-action="share/whatsapp/share"><img src="https://img.icons8.com/color/48/000000/whatsapp.png"></img></a> <a href="https://twitter.com/plotana_lab?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false"><img src="https://img.icons8.com/color/48/000000/twitter.png"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'
+    });
+  }).then(function () {
+    return homeBot.message.bot({
+      photo: 'assets/images/myAvatar.png',
+      delay: 500,
+      content: 'Please provide your feedback.'
+    });
+  }).then(function (res) {
+   
+    return homeBot.action.text({
+      delay: 1000,
+      action: {
+        // sub_type: 'email',
+        placeholder: 'Your feedback'
+      }
+    });
+  }).then(function (res) {
+    ga_record('Feedback', res.value);
+    return homeBot.message.bot({
+      photo: 'assets/images/myAvatar.png',
+      delay: 1000,
+      content: 'Thamk You very much. See you soon.'
     });
   })
 };
@@ -265,6 +309,7 @@ var tutorial = function () {
 var end = function () {
 
   homeBot.message.add({
+    photo: 'assets/images/myAvatar.png',
     delay: 1000,
     loading: true,
     content: 'OK smarty pants.But I am awesome and you need to see it.'
