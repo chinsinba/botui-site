@@ -149,7 +149,7 @@ var tutorial = function () {
     });
   }).then(function () {
     return homeBot.action.button({
-      delay: 200, 
+      delay: 1200, 
       action: [{
         text: 'Tell me more!',
         value: 'tmore'
