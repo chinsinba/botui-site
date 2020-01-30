@@ -95,7 +95,7 @@ var tutorial = function () {
           delay: 500,
           loading: true,
           type:'html',
-          content: '<img src="https://img.icons8.com/doodle/48/000000/marker--v1.png"> <b>'+ my_loc +'</b>'
+          content: '<img src="https://img.icons8.com/doodle/64/000000/marker--v1.png"><br> <h3>'+ my_loc +'</h3>'
         });
       }
       return homeBot.message.bot({
