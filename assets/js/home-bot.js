@@ -107,7 +107,7 @@ var tutorial = function () {
       
   }).then(function () {
     return homeBot.action.button({
-      delay: 200,
+      delay: 1500,
       action: [{
         text: 'Yes',
         value: 'yesSampleLocation'
