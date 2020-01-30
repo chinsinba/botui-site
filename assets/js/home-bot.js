@@ -91,7 +91,7 @@ var tutorial = function () {
       photo: 'assets/images/myAvatar.png',
       delay: 500,
       loading: true,
-      content: 'Where is the plot?'
+      content: 'Finding your location for analysis'
     });
 
   }).then(function (res) {
@@ -112,14 +112,14 @@ var tutorial = function () {
         delay: 500,
         loading: true,
         type: 'html',
-        content: "You did not provided access to your location. Do you want to procceed with a demo location?"
+        content: "You did not provide access to your location. Do you want me to proceed with a demo location?"
       });
       
   }).then(function () {
     return homeBot.action.button({
       delay: 1500,
       action: [{
-        text: 'Continue',
+        text: 'Proceed',
         value: 'yesSampleLocation'
       }]
     });
@@ -129,7 +129,7 @@ var tutorial = function () {
       photo: 'assets/images/myAvatar.png',
       delay: 1500,
       loading: true,
-      content: ' Please wait while I am pulling satellite images for analysis'
+      content: 'Please wait while I am pulling satellite images for analysis'
     });
   }).then(function (res) {
     return homeBot.message.add({
@@ -160,7 +160,7 @@ var tutorial = function () {
       delay: 500,
       loading: true,
       type: 'html',
-      content: '<h3><img src="assets/images/home-page.png"> <br>I can see in the past 2 years (from 2018 to 2019) 500 new homes have been constructed within 2 KM radius of your plot.</h3>'
+      content: '<h3><img src="assets/images/home-page.png"> <br>I can see in the past 2 years (from 2018 to 2019) at least 100 new homes have been constructed within 1 KM radius of your plot.</h3>'
     });
   }).then(function () {
     return homeBot.action.button({
@@ -176,7 +176,7 @@ var tutorial = function () {
       delay: 500,
       loading: true,
       type: 'html',
-      content: '<h3><img src="assets/images/deciduous-tree.png"><br> There are approximately 500 trees within 2 KM radius of your plot.</h3>'
+      content: '<h3><img src="assets/images/deciduous-tree.png"><br> There are approximately 300 trees within 1 KM radius of your plot.</h3>'
     });
   }).then(function () {
     return homeBot.action.button({
@@ -219,7 +219,7 @@ var tutorial = function () {
       delay: 2000,
       loading: true,
       type: 'html',
-      content: '<h3>This means there is high economic activity happening in the location. People are becoming nocturnal here.</h3>'
+      content: '<h3>This means there is increase in economic activity around this location. People are becoming nocturnal here.</h3>'
     });
   }).then(function () {
     return homeBot.action.button({
@@ -302,7 +302,7 @@ var tutorial = function () {
     return homeBot.message.bot({
       photo: 'assets/images/myAvatar.png',
       delay: 1000,
-      content: 'Thamk You very much. See you soon.'
+      content: 'Thank you very much. See you soon.'
     });
   })
 };
