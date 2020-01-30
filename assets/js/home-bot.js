@@ -98,13 +98,21 @@ var tutorial = function () {
           content: '<img src="https://img.icons8.com/doodle/48/000000/marker--v1.png"> <b>'+ my_loc +'</b>'
         });
       }
-      return homeBot.action.text({
-        delay: 1000,
-        action: {
-          value: my_loc,
-          placeholder: 'Enter your property location'
-        }
+      return homeBot.message.bot({
+        delay: 500,
+        loading: true,
+        type: 'html',
+        content: "You did not provided acess to your location. Do you want to see for a sample location?"
       });
+      
+  }).then(function () {
+    return homeBot.action.button({
+      delay: 200,
+      action: [{
+        text: 'Yes',
+        value: 'yesSampleLocation'
+      }]
+    });
   }).then(function (res) {
     my_loc =res.value
     return homeBot.message.bot({
@@ -136,7 +144,23 @@ var tutorial = function () {
     return homeBot.message.bot({
       delay: 500,
       loading: true,
-      content: 'I can see in the past 2 years (from 2018 to 2019) 500 new homes have been constructed within 2 KM radius of your plot.'
+      type: 'html',
+      content: '<h3><img src="https://img.icons8.com/clouds/64/000000/home-page.png"> <br>I can see in the past 2 years (from 2018 to 2019) 500 new homes have been constructed within 2 KM radius of your plot.</h3>'
+    });
+  }).then(function () {
+    return homeBot.action.button({
+      delay: 200, 
+      action: [{
+        text: 'Tell me more!',
+        value: 'tmore'
+      }]
+    });
+  }).then(function (res) {
+    return homeBot.message.bot({
+      delay: 500,
+      loading: true,
+      type: 'html',
+      content: '<h3><img src="https://img.icons8.com/clouds/64/000000/deciduous-tree.png"><br> There are approximately 500 trees within 2 KM radius of your plot.</h3>'
     });
   }).then(function () {
     return homeBot.action.button({
@@ -151,7 +175,8 @@ var tutorial = function () {
     return homeBot.message.bot({
       delay: 2000,
       loading: true,
-      content: "The population within 2 KM has gone up from 3900 persons/sqKm in 2015 to 4381 persons/sqKm in 2019. This place is overcrowded."
+      type: 'html',
+      content: "<h3> <img src='https://img.icons8.com/clouds/64/000000/conference-call.png'> <br>The population within 2 KM has gone up from 3900 persons/sqKm in 2015 to 4381 persons/sqKm in 2019. This place is overcrowded.</h3>"
     });
   }).then(function () {
     return homeBot.action.button({
@@ -166,18 +191,20 @@ var tutorial = function () {
     return homeBot.message.bot({
       delay: 2000,
       loading: true,
-      content: 'The night lights intensity in the last 2 years is growing fast. '
+      type: 'html',
+      content: '<h3><img src="https://img.icons8.com/clouds/64/000000/light-on.png"> <br>The night lights intensity in the last 2 years is growing fast.</h3>'
     });
   }).then(function (res) {
     ga_record('btn_click', res.value);
     return homeBot.message.bot({
       delay: 2000,
       loading: true,
-      content: 'This means there is high economic activity happening in the location. People are becoming nocturnal here.'
+      type: 'html',
+      content: '<h3>This means there is high economic activity happening in the location. People are becoming nocturnal here.</h3>'
     });
   }).then(function () {
     return homeBot.action.button({
-      delay: 1000,
+      delay: 200,
       action: [{
         text: 'Some more',
         value: 'somemore'
