@@ -188,53 +188,29 @@ var tutorial = function () {
     return homeBot.message.bot({
       delay: 1000,
       loading: true,
-      content: 'I can show other comparable locations for you to invest in.'
+      content: 'My creator is working on identifying better locations for you to invest in.'
     });
   }).then(function (res) {
     return homeBot.message.bot({
       delay: 1000,
       loading: true,
-      content: 'But for that, I have to know your budget?'
+      content: " Would you like to be notified?"
     });
   }).then(function () {
     return homeBot.action.button({
-      delay: 200,
+      delay: 1000,
       action: [{
-        text: '5-10 lakh',
-        value: '10l'
-      },
-      {text: '10-20 lakh',
-      value: '1020'
-    },{
-      text: '20-50 lakh',
-      value: '2050'
-    },{
-      text: 'I am very rich',
-      value: 'rich'
-    }]
+        text: 'Yes',
+        value: 'sure'
+      }, {
+        text: 'No',
+        value: 'skip'
+      }]
     });
   }).then(function (res) {
-    ga_record('budget_btn_click', res.value);
+    ga_record('Notify', res.value);
 
-   if (res.value=== 'rich')
-    {
-    return homeBot.message.bot({
-      delay: 1000,
-      content: 'You are rich. I am still in early Beta stage. My creator is working on this feature to make you further rich.'
-    });
-   }
-   return homeBot.message.bot({
-    delay: 1000,
-    content: "I am still in early Beta stage. My creator is working on this feature to make you further rich. "
-  });
-   }).then(function (res) {
-    return homeBot.message.bot({
-      delay: 1000,
-      loading: true,
-      content: "I will notify you when its made available to me."
-    });
-  }).then(function () {
-    ga_record('text_box', "email");
+    if (res.value=== 'sure'){
     return homeBot.action.text({
       delay: 1000,
       action: {
@@ -242,18 +218,19 @@ var tutorial = function () {
         placeholder: 'Enter your mail id'
       }
     });
-  }).then(function (res) {
-    ga_record('email', res.value);
+  }
+  }).then(function () {
+   
     return homeBot.message.bot({
       delay: 1000,
-      content: 'Thanks. Meanwhile, introduce me to your family and friends.'
+      content: 'Thanks. Meanwhile, follow and introduce me to your family and friends.'
     });
   }).then(function () {
     ga_record('message', 'share');
     return homeBot.message.bot({
       delay: 1000,
       type:'html',
-      content:'Touch me! <a href="whatsapp://send?text=Hi, I am Plotana, virtual property advisor. Available at your service on http://plotana.com " data-action="share/whatsapp/share"><img src="https://img.icons8.com/color/48/000000/whatsapp.png"></img></a> <a href="https://twitter.com/plotana_lab?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false"><img src="https://img.icons8.com/color/48/000000/twitter.png"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'
+      content:'<b>Touch Me!</b> <a href="whatsapp://send?text=Hi, I am Plotana, virtual property advisor. Available at your service on http://plotana.com " data-action="share/whatsapp/share"><img src="https://img.icons8.com/color/48/000000/whatsapp.png"></img></a> <a href="https://twitter.com/plotana_lab?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false"><img src="https://img.icons8.com/color/48/000000/twitter.png"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'
     });
   })
 };
