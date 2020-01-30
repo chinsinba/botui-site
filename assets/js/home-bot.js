@@ -164,9 +164,9 @@ var tutorial = function () {
     });
   }).then(function () {
     return homeBot.action.button({
-      delay: 200, 
+      delay: 1500, 
       action: [{
-        text: 'Tell me more!',
+        text: 'more...',
         value: 'tmore'
       }]
     });
@@ -180,9 +180,9 @@ var tutorial = function () {
     });
   }).then(function () {
     return homeBot.action.button({
-      delay: 1000,
+      delay: 1500,
       action: [{
-        text: 'more',
+        text: 'more...',
         value: 'more'
       }]
     });
@@ -204,9 +204,9 @@ var tutorial = function () {
     });
   }).then(function () {
     return homeBot.action.button({
-      delay: 200,
+      delay: 1000,
       action: [{
-        text: 'Some more',
+        text: 'Some more...',
         value: 'somemore'
       }]
     });
